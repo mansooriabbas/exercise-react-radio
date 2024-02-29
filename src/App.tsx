@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { Navbar } from "./components/Navbar/Navbar";
 import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Channels } from "./components/pages/Channels";
+import { LandingPage } from "./components/pages/LandingPage";
 
 export const App = () => {
   const [data, setData] = useState([]);
@@ -23,9 +26,11 @@ export const App = () => {
   }, []);
 
   return (
-    <div className="page-container">
-      <Navbar />
-      <h1>App component</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="channels" element={<Channels />} />
+        <Route path="landingPage" element={<LandingPage/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 };
