@@ -6,13 +6,13 @@ import { LandingPage } from "./components/pages/LandingPage";
 import { PageNotFound } from "./components/pages/PageNotFound";
 
 export const App = () => {
-  const [_, setData] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchChannels = async () => {
       try {
         const response = await fetch(
-          "http://api.sr.se/api/v2/channels?format=json"
+          "http://api.sr.se/api/v2/channels?format=json&size=20"
         );
         const jsonData = await response.json();
         setData(jsonData);
@@ -29,7 +29,7 @@ export const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="channels" element={<Channels />} />
+        <Route path="channels" element={<Channels data={data} />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

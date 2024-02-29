@@ -1,0 +1,36 @@
+.channel-wrapper {
+  height: 100vh;
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  button {
+    padding: .5rem 2rem;
+    border-radius: 6px;
+    border: 0;
+    background-color: rgb(56, 91, 168);
+    color: white;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  button:hover{
+    cursor: pointer;
+   background-color: rgb(8, 121, 155);
+  }
+}
+
+.list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 10px solid black;
+  padding: 2rem;
+  width: 100%;
+  margin: 1rem;
+  li {
+    width: 50%;
+    list-style: none;
+  }
+}
