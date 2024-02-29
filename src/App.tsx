@@ -6,7 +6,7 @@ import { LandingPage } from "./components/pages/LandingPage";
 import { PageNotFound } from "./components/pages/PageNotFound";
 
 export const App = () => {
-  const [data, setData] = useState([]);
+  const [_, setData] = useState([]);
 
   useEffect(() => {
     const fetchChannels = async () => {
