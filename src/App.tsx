@@ -7,12 +7,12 @@ import { PageNotFound } from "./components/pages/PageNotFound";
 
 export const App = () => {
   const [data, setData] = useState([]);
-
+  const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
     const fetchChannels = async () => {
       try {
         const response = await fetch(
-          "http://api.sr.se/api/v2/channels?format=json&size=20"
+          `http://api.sr.se/v2/channels?format=json&size=10&page=${currentPage}`
         );
         const jsonData = await response.json();
         setData(jsonData);
@@ -23,13 +23,31 @@ export const App = () => {
     };
 
     fetchChannels();
-  }, []);
+  }, [currentPage]);
+
+  const handleLoadMore = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+    console.log(currentPage);
+  };
+  const handleLoadLess = () => {
+    currentPage > 1 && setCurrentPage((prevPage) => prevPage - 1);
+    console.log(currentPage);
+  };
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="channels" element={<Channels data={data} />} />
+        <Route
+          path="channels"
+          element={
+            <Channels
+              data={data}
+              handleLoadMore={handleLoadMore}
+              handleLoadLess={handleLoadLess}
+            />
+          }
+        />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

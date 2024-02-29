@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   button {
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
     border-radius: 6px;
     border: 0;
     background-color: rgb(56, 91, 168);
@@ -15,9 +15,9 @@
     transition: background-color 0.3s ease-in-out;
   }
 
-  button:hover{
+  button:hover {
     cursor: pointer;
-   background-color: rgb(8, 121, 155);
+    background-color: rgb(8, 121, 155);
   }
 }
 

@@ -13,19 +13,19 @@ export const Channels = (props) => {
 
   useEffect(() => {
     handleChannels();
-  }, [props.data]);
+  }, [props.data.channels]);
 
   return (
     <>
       <Navbar />
       <div className="channel-wrapper">
-        <button>left</button>
+        <button onClick={props.handleLoadLess}>left</button>
         <div className="list-container">
           {channels.map((channel, index) => (
             <li key={index}>{channel}</li>
           ))}
         </div>
-        <button>right</button>
+        <button onClick={props.handleLoadMore}>right</button>
       </div>
     </>
   );
