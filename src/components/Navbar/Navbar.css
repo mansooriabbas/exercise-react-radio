@@ -1,0 +1,9 @@
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+
+  li {
+    list-style: none;
+  }
+}
