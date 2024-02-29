@@ -1,4 +1,5 @@
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const links = [
@@ -17,9 +18,9 @@ export const Navbar = () => {
   return (
     <header className="navbar">
       {links.map((link) => (
-        <li key={link.id}>
-          <a href={link.channels}>{link.name}</a>
-        </li>
+        <Link key={link.id} to={link.channels}>
+          {link.name}
+        </Link>
       ))}
     </header>
   );

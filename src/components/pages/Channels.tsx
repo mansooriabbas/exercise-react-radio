@@ -1,7 +1,10 @@
-
+import { Navbar } from "../Navbar/Navbar";
 
 export const Channels = () => {
   return (
-    <div>Channels</div>
-  )
-}
+    <>
+      <Navbar />
+      <div>Channels</div>
+    </>
+  );
+};
