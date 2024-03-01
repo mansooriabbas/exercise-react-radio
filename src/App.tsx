@@ -28,12 +28,10 @@ export const App = () => {
   const handleLoadMore = () => {
     {
       currentPage < 6 && setCurrentPage((prevPage) => prevPage + 1);
-      
     }
   };
   const handleLoadLess = () => {
     currentPage > 1 && setCurrentPage((prevPage) => prevPage - 1);
-    
   };
 
   return (

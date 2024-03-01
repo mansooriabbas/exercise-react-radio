@@ -16,6 +16,12 @@ export const Channels = (props) => {
     handleChannels();
   }, [props.data.channels]);
 
+  <figure>
+    <figcaption>Listen to the T-Rex:</figcaption>
+    <audio controls src="/media/cc0-audio/t-rex-roar.mp3"></audio>
+    <a href="/media/cc0-audio/t-rex-roar.mp3"> Download audio </a>
+  </figure>;
+
   return (
     <>
       <Navbar />
@@ -24,7 +30,11 @@ export const Channels = (props) => {
         <div className="list-container">
           {channels.map((channel, index) => (
             <li key={index}>
-            <p>{channel.name}</p>   <a href={channel.siteurl}>{channel.siteurl}</a> <img src={channel.image} alt="" />{" "}
+              <figcaption>{channel.name}</figcaption>
+              <figure>
+                <audio controls src={channel.liveaudio.url}></audio>
+              </figure>{" "}
+              <img src={channel.image} alt="" />{" "}
             </li>
           ))}
         </div>

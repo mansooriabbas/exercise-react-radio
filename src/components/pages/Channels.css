@@ -40,12 +40,12 @@
     box-shadow: 0 0 2px 0 gray;
     border-radius: 6px;
 
-    p {
+    figcaption {
       width: 10%;
       padding: 1rem;
     }
 
-    a{
+    a {
       width: 10%;
     }
 
@@ -57,3 +57,4 @@
     }
   }
 }
+
