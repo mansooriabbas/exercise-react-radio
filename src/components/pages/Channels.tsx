@@ -4,10 +4,11 @@ import "./Channels.css";
 
 export const Channels = (props) => {
   const [channels, setChannels] = useState([]);
+  const [channelImg, setChannelImg] = useState([]);
 
   const handleChannels = () => {
     if (props.data.channels) {
-      setChannels(props.data.channels.map((list) => list.name));
+      setChannels(props.data.channels.map((list) => list));
     }
   };
 
@@ -22,7 +23,9 @@ export const Channels = (props) => {
         <button onClick={props.handleLoadLess}>left</button>
         <div className="list-container">
           {channels.map((channel, index) => (
-            <li key={index}>{channel}</li>
+            <li key={index}>
+            <p>{channel.name}</p>   <a href={channel.siteurl}>{channel.siteurl}</a> <img src={channel.image} alt="" />{" "}
+            </li>
           ))}
         </div>
         <button onClick={props.handleLoadMore}>right</button>
