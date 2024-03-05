@@ -18,6 +18,11 @@ export const Navbar = () => {
       channels: "/schedules",
       name: "Schedules",
     },
+    {
+      id: 4,
+      channels: "/categories",
+      name: "Categories",
+    },
   ];
 
   return (

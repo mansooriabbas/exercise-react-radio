@@ -5,13 +5,19 @@ import { Channels } from "./components/pages/Channels";
 import { LandingPage } from "./components/pages/LandingPage";
 import { PageNotFound } from "./components/pages/PageNotFound";
 import { Schedules } from "./components/pages/Schedules";
+import { Categories } from "./components/pages/Categories";
 
 export const App = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [scheduleData, setScheduleData] = useState([]);
   const [channelId, setChannelId] = useState(null);
+  const [categorieData, setCategorieData] = useState([]);
+
+
   useEffect(() => {
+    //Fetches
+
     const fetchChannels = async () => {
       try {
         const response = await fetch(
@@ -42,6 +48,27 @@ export const App = () => {
       return null;
     }
   };
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(
+          "http://api.sr.se/api/v2/programcategories?format=json"
+          // `https://api.sr.se/api/v2/programs/index?programcategoryid=11&format=json`
+        );
+        const categorieData = await response.json();
+        setCategorieData(categorieData)
+        console.log("Fetched categories", ":", categorieData);
+      } catch (error) {
+        console.log("Error fetching categories:", error);
+      }
+    };
+    fetchCategories()
+  }, []);
+
+  //Fetches
+
+  //Functions
+
   const handleLoadMore = () => {
     {
       currentPage < 6 && setCurrentPage((prevPage) => prevPage + 1);
@@ -51,6 +78,7 @@ export const App = () => {
     currentPage > 1 && setCurrentPage((prevPage) => prevPage - 1);
   };
 
+  //Functions
   return (
     <BrowserRouter>
       <Routes>
@@ -69,6 +97,7 @@ export const App = () => {
           path="schedules"
           element={<Schedules data={data} fetchSchedule={fetchSchedule} />}
         />
+        <Route path="categories" element={<Categories categorieData={categorieData} />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

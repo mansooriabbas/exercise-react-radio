@@ -18,9 +18,9 @@ The interpretation of these user stories are rather free and how you decide to s
 
 <!-- - As a user I want to be able to see a list of all the channels. -->
 <!-- - As a user I want to be able to see all the programs on a given channel during "today" and also be able to see what airs "tomorrow" and maybe some day later in the week. -->
-- As a user I want to be able to see all the program that airs on a given channel.
-- As a user I want to be able to see a list of all the categories.
-- As a user I want to be able to see a list of all the programs in a given category.
+<!-- - As a user I want to be able to see all the program that airs on a given channel. -->
+<!-- - As a user I want to be able to see a list of all the categories. -->
+<!-- - As a user I want to be able to see a list of all the programs in a given category. -->
 - As a user I want to be able to search for a program.
 - As a user I want to be able to get information on a specific program.
 - As a user I want to be able to see when a specific program airs and on which channel.
