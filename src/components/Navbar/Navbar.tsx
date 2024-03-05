@@ -13,6 +13,11 @@ export const Navbar = () => {
       channels: "/channels",
       name: "Channels",
     },
+    {
+      id: 3,
+      channels: "/schedules",
+      name: "Schedules",
+    },
   ];
 
   return (
