@@ -39,15 +39,25 @@ export const Schedules = ({ data, fetchSchedule }) => {
       <h1>Schedules</h1>
       <div>
         {scheduleData.map((schedule, index) => {
-          return (
-            <div key={index}>
-              <h2>{`Channel:`}</h2>
-              {schedule.schedule.map((program, programIndex) => (
-                <p key={programIndex}>{program.title}</p>
-              ))}
-              {/* Render other schedule information as needed */}
-            </div>
-          );
+        return (
+          <div key={index}>
+            {schedule.schedule.map((program, programIndex) => {
+              const timestamp = parseInt(program.endtimeutc.match(/\d+/)[0]);
+              const date = new Date(timestamp);
+              const formattedDate = date.toLocaleString();
+        
+              return (
+                <div key={programIndex}>
+                  <h2>{program.channel.name}</h2>
+                  <p>{program.title}</p>
+                  <p>{program.description}</p>
+                  <p>{formattedDate}</p>
+                  <img src={program.imageurl} alt="" />
+                </div>
+              );
+            })}
+          </div>
+        );
         })}
       </div>
     </>

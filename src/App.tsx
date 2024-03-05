@@ -35,7 +35,7 @@ export const App = () => {
         `http://api.sr.se/v2/scheduledepisodes?format=json&channelid=${channelId}`
       );
       const data = await response.json();
-      console.log("Fetched schedule for channel", channelId, ":", data); // Add this log statement
+      console.log("Fetched schedule for channel", channelId, ":", data);
       return data;
     } catch (error) {
       console.error("Error fetching schedule:", error);
