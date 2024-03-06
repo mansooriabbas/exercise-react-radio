@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-evenly;
   padding: 1rem;
-  background-color: rgb(56, 73, 109);
+  background-color: #000000e7;
   font-weight: 700;
   li {
     list-style: none;

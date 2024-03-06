@@ -15,22 +15,23 @@
     overflow: auto;
   }
   li {
-    font-size: 1.5rem;
+    font-size: 1rem;
 
     color: #99c1d1;
     padding: 0.8rem;
     margin: 1rem;
 
-    box-shadow: 0 1px 0px 0px #1f20204f;
     transition: background-color 0.3s ease;
-    width: 10rem;
-    font-weight: 900;
+    transition: font-weight 0.5s ease;
+    width: 8rem;
+
     text-align: center;
   }
 
   li:hover {
-    color: #48a2cc;
+    /* color: #48a2cc; */
     cursor: pointer;
+    font-weight: 1000;
   }
 }
 li {
@@ -89,12 +90,13 @@ li {
     .text-container {
       display: flex;
       flex-direction: column;
-      /* align-items: center; */
       justify-content: center;
       width: 100%;
       height: 20rem;
-      /* text-align: center; */
       background-color: rgba(92, 93, 167, 0.329);
+      p {
+        padding: 0.5rem;
+      }
     }
   }
 }

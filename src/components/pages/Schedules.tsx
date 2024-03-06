@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../Navbar/Navbar";
+import "./Schedules.css";
 
 export const Schedules = ({ data, fetchSchedule }) => {
   const [scheduleData, setScheduleData] = useState([]);
@@ -36,29 +37,32 @@ export const Schedules = ({ data, fetchSchedule }) => {
   return (
     <>
       <Navbar />
-      <h1>Schedules</h1>
-      <div>
-        {scheduleData.map((schedule, index) => {
-        return (
-          <div key={index}>
-            {schedule.schedule.map((program, programIndex) => {
-              const timestamp = parseInt(program.endtimeutc.match(/\d+/)[0]);
-              const date = new Date(timestamp);
-              const formattedDate = date.toLocaleString();
-        
-              return (
-                <div key={programIndex}>
-                  <h2>{program.channel.name}</h2>
-                  <p>{program.title}</p>
-                  <p>{program.description}</p>
-                  <p>{formattedDate}</p>
-                  <img src={program.imageurl} alt="" />
-                </div>
-              );
-            })}
-          </div>
-        );
-        })}
+      <div className="schedules-container">
+        <h1>Schedules</h1>
+        <div className="cards-container">
+          {scheduleData.map((schedule, index) => (
+            <div key={index} className="card">
+              {schedule.schedule.map((program, programIndex) => {
+                const timestamp = parseInt(program.endtimeutc.match(/\d+/)[0]);
+                const date = new Date(timestamp);
+                const formattedDate = date.toLocaleString();
+
+                return (
+                  <div className="box" key={programIndex}>
+                    <img src={program.imageurl} alt="" />
+                    <div className="text-container">
+                      <h2>{program.channel.name}</h2>
+                      <p>{program.title}</p>
+                      <p>{program.description}</p>
+                      <p>{formattedDate}</p>
+                    </div>
+
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
