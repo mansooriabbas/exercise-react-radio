@@ -1,0 +1,22 @@
+.search-page-container {
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.searchbar-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+
+  input {
+    padding: 1rem;
+  }
+  label {
+    color: rgb(83, 212, 235);
+  }
+}

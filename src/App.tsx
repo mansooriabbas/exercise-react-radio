@@ -6,6 +6,7 @@ import { LandingPage } from "./components/pages/LandingPage";
 import { PageNotFound } from "./components/pages/PageNotFound";
 import { Schedules } from "./components/pages/Schedules";
 import { Categories } from "./components/pages/Categories";
+import { SearchPage } from "./components/pages/SearchPage";
 
 export const App = () => {
   const [data, setData] = useState([]);
@@ -98,6 +99,7 @@ export const App = () => {
           element={<Schedules data={data} fetchSchedule={fetchSchedule} />}
         />
         <Route path="categories" element={<Categories categorieData={categorieData} />} />
+        <Route path="searchpage" element={<SearchPage />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
