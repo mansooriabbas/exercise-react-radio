@@ -14,11 +14,13 @@ export const App = () => {
   const [scheduleData, setScheduleData] = useState([]);
   const [channelId, setChannelId] = useState(null);
   const [categorieData, setCategorieData] = useState([]);
+  const [programData, setProgramData] = useState([]);
+  const [programContainer, setProgramContainer] = ([])
+
+  //Fetches
 
 
   useEffect(() => {
-    //Fetches
-
     const fetchChannels = async () => {
       try {
         const response = await fetch(
@@ -27,7 +29,7 @@ export const App = () => {
         const jsonData = await response.json();
         setData(jsonData);
 
-        console.log(jsonData, "Channels");
+        // console.log(jsonData, "Channels");
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
@@ -42,7 +44,7 @@ export const App = () => {
         `http://api.sr.se/v2/scheduledepisodes?format=json&channelid=${channelId}`
       );
       const data = await response.json();
-      console.log("Fetched schedule for channel", channelId, ":", data);
+      setScheduleData(data);
       return data;
     } catch (error) {
       console.error("Error fetching schedule:", error);
@@ -54,16 +56,15 @@ export const App = () => {
       try {
         const response = await fetch(
           "http://api.sr.se/api/v2/programcategories?format=json"
-          // `https://api.sr.se/api/v2/programs/index?programcategoryid=11&format=json`
         );
         const categorieData = await response.json();
-        setCategorieData(categorieData)
-        console.log("Fetched categories", ":", categorieData);
+        setCategorieData(categorieData);
+        // console.log("Fetched categories", ":", categorieData);
       } catch (error) {
         console.log("Error fetching categories:", error);
       }
     };
-    fetchCategories()
+    fetchCategories();
   }, []);
 
   //Fetches
@@ -98,8 +99,12 @@ export const App = () => {
           path="schedules"
           element={<Schedules data={data} fetchSchedule={fetchSchedule} />}
         />
-        <Route path="categories" element={<Categories categorieData={categorieData} />} />
-        <Route path="searchpage" element={<SearchPage />} />
+        <Route
+          path="categories"
+          element={<Categories categorieData={categorieData} />}
+        />
+       <Route path="searchpage" element={<SearchPage  />} />
+
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

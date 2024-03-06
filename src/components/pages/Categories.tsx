@@ -14,12 +14,12 @@ export const Categories = (props) => {
       const additionalData = await response.json();
       setAdditionalData(additionalData);
 
-      console.log(
-        "Additional data for category ID",
-        categoryId,
-        ":",
-        additionalData
-      );
+      // console.log(
+      //   "Additional data for category ID",
+      //   categoryId,
+      //   ":",
+      //   additionalData
+      // );
     } catch (error) {
       console.error("Error fetching additional data:", error);
     }
