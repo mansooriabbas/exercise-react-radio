@@ -6,17 +6,61 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
+  button {
+    padding: 1rem;
+    cursor: pointer;
+    width: 8rem;
+    background-color: rgb(83, 212, 235);
+    margin-top: .5rem;
+    align-self: flex-start;
+    border: 0;
+  }
 }
 
 .searchbar-container {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  justify-content: center;
+  width: 100%;
 
   input {
     padding: 1rem;
+    margin: 0;
+    border: none;
   }
   label {
     color: rgb(83, 212, 235);
   }
+
+
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 15rem;
+    background-color: rgba(92, 93, 167, 0.329);
+    padding-left: 1rem;
+    color: white;
+  }
+}
+
+.search-results ul {
+  list-style-type: none;
+  padding: 10px;
+}
+
+.search-results img {
+  max-width: 100%;
+  height: auto;
 }

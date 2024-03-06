@@ -14,11 +14,8 @@ export const App = () => {
   const [scheduleData, setScheduleData] = useState([]);
   const [channelId, setChannelId] = useState(null);
   const [categorieData, setCategorieData] = useState([]);
-  const [programData, setProgramData] = useState([]);
-  const [programContainer, setProgramContainer] = ([])
 
   //Fetches
-
 
   useEffect(() => {
     const fetchChannels = async () => {
@@ -44,13 +41,13 @@ export const App = () => {
         `http://api.sr.se/v2/scheduledepisodes?format=json&channelid=${channelId}`
       );
       const data = await response.json();
-      setScheduleData(data);
       return data;
     } catch (error) {
       console.error("Error fetching schedule:", error);
       return null;
     }
   };
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -103,7 +100,7 @@ export const App = () => {
           path="categories"
           element={<Categories categorieData={categorieData} />}
         />
-       <Route path="searchpage" element={<SearchPage  />} />
+        <Route path="searchpage" element={<SearchPage />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

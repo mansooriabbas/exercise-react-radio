@@ -26,7 +26,6 @@ export const Schedules = ({ data, fetchSchedule }) => {
           }
         });
 
-        // Wait for all promises to resolve before moving on
         await Promise.all(fetchPromises);
       }
     };
@@ -56,7 +55,6 @@ export const Schedules = ({ data, fetchSchedule }) => {
                       <p>{program.description}</p>
                       <p>{formattedDate}</p>
                     </div>
-
                   </div>
                 );
               })}
