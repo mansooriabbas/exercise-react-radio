@@ -6,6 +6,7 @@ export const SearchPage = () => {
   const [programData, setProgramData] = useState(null); // Initialize with null
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     const fetchPrograms = async () => {
@@ -22,12 +23,27 @@ export const SearchPage = () => {
     fetchPrograms();
   }, []);
 
-  // Function to handle user input change
+  const toggleFavorite = (programId) => {
+    const isFavorite = favorites.some((fav) => fav.id === programId);
+    if (isFavorite) {
+      const updatedFavorites = favorites.filter((fav) => fav.id !== programId);
+      setFavorites(updatedFavorites);
+      console.log(updatedFavorites)
+    } else {
+      const programToAdd = programData.programs.find(
+        (prg) => prg.id === programId
+      );
+      if (programToAdd) {
+        setFavorites([...favorites, programToAdd]);
+        console.log(programToAdd)
+      }
+    }
+  };
+
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  // Function to handle search when Enter is pressed
   const handleSearch = () => {
     if (searchTerm.trim() !== "") {
       const filtered = programData.programs.filter((prg) =>
@@ -35,7 +51,6 @@ export const SearchPage = () => {
       );
       setFilteredResults(filtered);
     } else {
-      // Clear the results if the search term is empty
       setFilteredResults([]);
     }
   };
@@ -69,7 +84,7 @@ export const SearchPage = () => {
             }}
           />
         </div>
-          <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch}>Search</button>
 
         {filteredResults.length > 0 && (
           <div className="search-results">
@@ -82,6 +97,11 @@ export const SearchPage = () => {
                   <li>{prg.description}</li>
                   <li>{prg.schedule}</li>
                 </div>
+                <button onClick={() => toggleFavorite(prg.id)}>
+                  {favorites.some((fav) => fav.id === prg.id)
+                    ? "Remove from Favorites"
+                    : "Add to Favorites"}
+                </button>
               </ul>
             ))}
           </div>
