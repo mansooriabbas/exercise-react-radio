@@ -1,27 +1,20 @@
 # Exercise React Radio
 
-In this exercise you will create a Radio application that is using the "Sveriges Radios öppna API". To your help you have this scaffolded repo that includes React Router and Sass. The React router you will need in order to handle the different pages/views but Sass is something that is optional for you.
+## Project Overview
 
-[Here is a live example of a radio application built with this API](https://sradio.onrender.com/)
+This is a React-based radio application. The project utilizes the "Sveriges Radios öppna API" to fetch and display information about radio channels, programs, and categories.
 
-<figure>
-  <img src="./src/assets/screenshot.png">
-</figure>
+## Live Preview
 
-The API you can find on this link: [Sveriges Radio öppna API](https://sverigesradio.se/api/documentation/v2/index.html)
+Explore the live preview of the project: [Exercise React Radio Live](https://mansooriabbas.github.io/exercise-react-radio/)
 
-This API returns XML per default but it can be configure via query parameters to return json instead.
+## Functionality
 
-Below you will find a set of user stories that you will follow in order to complete this exercise.
-
-The interpretation of these user stories are rather free and how you decide to showcase them is entirely up to you.
-
-<!-- - As a user I want to be able to see a list of all the channels. -->
-<!-- - As a user I want to be able to see all the programs on a given channel during "today" and also be able to see what airs "tomorrow" and maybe some day later in the week. -->
-<!-- - As a user I want to be able to see all the program that airs on a given channel. -->
-<!-- - As a user I want to be able to see a list of all the categories. -->
-<!-- - As a user I want to be able to see a list of all the programs in a given category. -->
-<!-- - As a user I want to be able to search for a program. -->
-<!-- - As a user I want to be able to get information on a specific program.
-- As a user I want to be able to see when a specific program airs and on which channel. -->
-- As a user I want to be able to mark program as favorites that I can later view in a seperate view.
+- **List of All Channels:** View a comprehensive list of available radio channels.
+- **Programs on a Channel:** Check today's, tomorrow's, and upcoming week's program schedule for a specific channel.
+- **All Programs on a Channel:** Explore a detailed list of all programs on a chosen channel.
+- **List of All Categories:** See a categorized list of all available radio program categories.
+- **Programs in a Category:** Explore programs associated with a specific category.
+- **Program Search:** Search for programs and find relevant results.
+- **Program Information:** Get detailed information about a specific program, including its airing schedule and the associated channel.
+- **Mark Programs as Favorites:** Mark favorite programs for later viewing in a dedicated section.
