@@ -1,6 +1,6 @@
 import "./Categories.css";
 import { Navbar } from "../Navbar/Navbar";
-import { useState, ReactElement } from "react";
+import { useState } from "react";
 
 interface Category {
   id: number;

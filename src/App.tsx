@@ -22,9 +22,8 @@ interface Channel {
 export const App: React.FC = () => {
   const [data, setData] = useState<Channel[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [categorieData, setCategorieData] = useState<any[]>([]); // Adjust the type accordingly
-  const [scheduleData, setScheduleData] = useState<any[]>([]); // Adjust the type accordingly
-  const [channelId, setChannelId] = useState<number | null>(null);
+  const [categorieData, setCategorieData] = useState<any[]>([]); 
+
 
   // Fetches
 
