@@ -87,7 +87,7 @@ export const App: React.FC = () => {
 
   //Functions
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/exercise-react-radio">
     <ContextProvider>
       <Routes>
         <Route path="/" element={<LandingPage />} />
