@@ -7,6 +7,8 @@ import { PageNotFound } from "./components/pages/PageNotFound";
 import { Schedules } from "./components/pages/Schedules";
 import { Categories } from "./components/pages/Categories";
 import { SearchPage } from "./components/pages/SearchPage";
+import FavoritesPage from "./components/pages/FavoritesPage";
+import ContextProvider from "./ContextProvider";
 
 export const App = () => {
   const [data, setData] = useState([]);
@@ -80,6 +82,7 @@ export const App = () => {
   //Functions
   return (
     <BrowserRouter>
+    <ContextProvider>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route
@@ -101,9 +104,11 @@ export const App = () => {
           element={<Categories categorieData={categorieData} />}
         />
         <Route path="searchpage" element={<SearchPage />} />
+        <Route path="favorites" element={<FavoritesPage />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      </ContextProvider>
     </BrowserRouter>
   );
 };

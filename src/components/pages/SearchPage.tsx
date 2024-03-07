@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Navbar } from "../Navbar/Navbar";
+import Context from "../../Context"; // Import your context
+
 import "./Searchpage.css";
 
 export const SearchPage = () => {
-  const [programData, setProgramData] = useState(null); // Initialize with null
+  const [programData, setProgramData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+
+  // Accessing favorites and setFavorites from context
+  const { favorites, setFavorites } = useContext(Context);
 
   useEffect(() => {
     const fetchPrograms = async () => {
@@ -25,17 +29,19 @@ export const SearchPage = () => {
 
   const toggleFavorite = (programId) => {
     const isFavorite = favorites.some((fav) => fav.id === programId);
+
     if (isFavorite) {
       const updatedFavorites = favorites.filter((fav) => fav.id !== programId);
       setFavorites(updatedFavorites);
-      console.log(updatedFavorites)
+      console.log(updatedFavorites);
     } else {
       const programToAdd = programData.programs.find(
         (prg) => prg.id === programId
       );
+
       if (programToAdd) {
         setFavorites([...favorites, programToAdd]);
-        console.log(programToAdd)
+        console.log(programToAdd);
       }
     }
   };
@@ -54,6 +60,7 @@ export const SearchPage = () => {
       setFilteredResults([]);
     }
   };
+
   if (!programData) {
     return (
       <>

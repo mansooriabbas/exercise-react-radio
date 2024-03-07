@@ -28,6 +28,11 @@ export const Navbar = () => {
       channels: "/searchpage",
       name: "Search",
     },
+    {
+      id: 6,
+      channels: "/favorites",
+      name: "Favorites",
+    },
   ];
 
   return (

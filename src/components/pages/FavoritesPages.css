@@ -1,0 +1,40 @@
+.favorite-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 20rem;
+      background-color: rgba(92, 93, 167, 0.329);
+      padding: .5rem;
+      color: white;
+      
+    }
+  }
+
+  li {
+    padding: 1rem;
+   
+ 
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    width: 30rem;
+  }
+}
