@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Channels } from "./components/pages/Channels";
 import { LandingPage } from "./components/pages/LandingPage";
@@ -10,14 +9,24 @@ import { SearchPage } from "./components/pages/SearchPage";
 import FavoritesPage from "./components/pages/FavoritesPage";
 import ContextProvider from "./ContextProvider";
 
-export const App = () => {
-  const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [scheduleData, setScheduleData] = useState([]);
-  const [channelId, setChannelId] = useState(null);
-  const [categorieData, setCategorieData] = useState([]);
+interface Channel {
+  id: number;
+  name: string;
+  description: string;
+  // Add more properties as needed
+}
 
-  //Fetches
+
+
+
+export const App: React.FC = () => {
+  const [data, setData] = useState<Channel[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [categorieData, setCategorieData] = useState<any[]>([]); // Adjust the type accordingly
+  const [scheduleData, setScheduleData] = useState<any[]>([]); // Adjust the type accordingly
+  const [channelId, setChannelId] = useState<number | null>(null);
+
+  // Fetches
 
   useEffect(() => {
     const fetchChannels = async () => {
@@ -25,7 +34,7 @@ export const App = () => {
         const response = await fetch(
           `http://api.sr.se/v2/channels?format=json&size=10&page=${currentPage}`
         );
-        const jsonData = await response.json();
+        const jsonData: Channel[] = await response.json();
         setData(jsonData);
 
         // console.log(jsonData, "Channels");
@@ -37,12 +46,12 @@ export const App = () => {
     fetchChannels();
   }, [currentPage]);
 
-  const fetchSchedule = async (channelId) => {
+  const fetchSchedule = async (channelId: number) => {
     try {
       const response = await fetch(
         `http://api.sr.se/v2/scheduledepisodes?format=json&channelid=${channelId}`
       );
-      const data = await response.json();
+      const data: any[] = await response.json();
       return data;
     } catch (error) {
       console.error("Error fetching schedule:", error);
@@ -56,7 +65,7 @@ export const App = () => {
         const response = await fetch(
           "http://api.sr.se/api/v2/programcategories?format=json"
         );
-        const categorieData = await response.json();
+        const categorieData: any[] = await response.json();
         setCategorieData(categorieData);
         // console.log("Fetched categories", ":", categorieData);
       } catch (error) {
@@ -66,14 +75,12 @@ export const App = () => {
     fetchCategories();
   }, []);
 
-  //Fetches
+  // Fetches
 
-  //Functions
+  // Functions
 
   const handleLoadMore = () => {
-    {
-      currentPage < 6 && setCurrentPage((prevPage) => prevPage + 1);
-    }
+    currentPage < 6 && setCurrentPage((prevPage) => prevPage + 1);
   };
   const handleLoadLess = () => {
     currentPage > 1 && setCurrentPage((prevPage) => prevPage - 1);
@@ -89,7 +96,7 @@ export const App = () => {
           path="channels"
           element={
             <Channels
-              data={data}
+              data={data as any} 
               handleLoadMore={handleLoadMore}
               handleLoadLess={handleLoadLess}
             />
@@ -97,11 +104,11 @@ export const App = () => {
         />
         <Route
           path="schedules"
-          element={<Schedules data={data} fetchSchedule={fetchSchedule} />}
+          element={<Schedules data={data as any} fetchSchedule={fetchSchedule as any} />}
         />
         <Route
           path="categories"
-          element={<Categories categorieData={categorieData} />}
+          element={<Categories categorieData={categorieData as any} />}
         />
         <Route path="searchpage" element={<SearchPage />} />
         <Route path="favorites" element={<FavoritesPage />} />

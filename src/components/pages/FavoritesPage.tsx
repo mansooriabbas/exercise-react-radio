@@ -1,8 +1,10 @@
 // FavoritesPage.js
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Context from "../../Context";
 import { Navbar } from "../Navbar/Navbar";
 import "./FavoritesPages.css"
+
+
 
 const FavoritesPage = () => {
   const { favorites } = useContext(Context);
@@ -23,7 +25,7 @@ const FavoritesPage = () => {
                 <p>{fav.channel.name}</p>
                 <p>{fav.description}</p>
                 <p>{fav.schedule}</p>
-                {/* Add other details you want to display */}
+                
               </div>
             </li>
           ))}

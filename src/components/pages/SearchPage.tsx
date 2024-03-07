@@ -1,15 +1,25 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, ChangeEvent } from "react";
 import { Navbar } from "../Navbar/Navbar";
-import Context from "../../Context"; // Import your context
-
+import Context from "../../Context";
 import "./Searchpage.css";
 
-export const SearchPage = () => {
-  const [programData, setProgramData] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredResults, setFilteredResults] = useState([]);
+interface IFavorites {
+  id: number;
+  name?: string;
+  programimage?: string;
+  description?: string;
+  schedule?: string;
+  channel?: {
+    name: string;
+  } | undefined;
+  // Add any other properties as needed
+}
 
-  // Accessing favorites and setFavorites from context
+export const SearchPage: React.FC = () => {
+  const [programData, setProgramData] = useState<{ programs: IFavorites[] } | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filteredResults, setFilteredResults] = useState<IFavorites[]>([]);
+
   const { favorites, setFavorites } = useContext(Context);
 
   useEffect(() => {
@@ -27,34 +37,32 @@ export const SearchPage = () => {
     fetchPrograms();
   }, []);
 
-  const toggleFavorite = (programId) => {
+  const toggleFavorite = (programId: number) => {
     const isFavorite = favorites.some((fav) => fav.id === programId);
 
     if (isFavorite) {
       const updatedFavorites = favorites.filter((fav) => fav.id !== programId);
       setFavorites(updatedFavorites);
-      console.log(updatedFavorites);
     } else {
-      const programToAdd = programData.programs.find(
-        (prg) => prg.id === programId
+      const programToAdd = programData?.programs.find(
+        (prg: IFavorites) => prg.id === programId
       );
 
       if (programToAdd) {
-        setFavorites([...favorites, programToAdd]);
-        console.log(programToAdd);
+        setFavorites([...favorites, { ...programToAdd  as any, id: programId }]);
       }
     }
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
   const handleSearch = () => {
     if (searchTerm.trim() !== "") {
-      const filtered = programData.programs.filter((prg) =>
-        prg.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const filtered = programData?.programs.filter((prg) =>
+        prg.name?.toLowerCase().includes(searchTerm.toLowerCase())
+      ) || [];
       setFilteredResults(filtered);
     } else {
       setFilteredResults([]);
@@ -100,7 +108,7 @@ export const SearchPage = () => {
                 <img src={prg.programimage} alt="" />
                 <div className="text-container">
                   <li>{prg.name}</li>
-                  <li>{prg.channel.name}</li>
+                  <li>{prg.channel?.name}</li>
                   <li>{prg.description}</li>
                   <li>{prg.schedule}</li>
                 </div>

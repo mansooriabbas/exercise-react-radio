@@ -5,3 +5,14 @@ body {
   background-color: #000000e7;
   color: white;
 }
+
+.landing-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+}

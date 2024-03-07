@@ -2,8 +2,34 @@ import React, { useEffect, useState } from "react";
 import { Navbar } from "../Navbar/Navbar";
 import "./Schedules.css";
 
-export const Schedules = ({ data, fetchSchedule }) => {
-  const [scheduleData, setScheduleData] = useState([]);
+interface Channel {
+  id: number;
+}
+
+interface Program {
+  endtimeutc: string;
+  imageurl: string;
+  title: string;
+  description: string;
+  channel: {
+    name: string;
+  };
+  // Add any other properties as needed
+}
+
+interface ScheduleData {
+  schedule: Program[];
+}
+
+interface SchedulesProps {
+  data: {
+    channels?: Channel[];
+  };
+  fetchSchedule: (channelId: number) => Promise<ScheduleData>;
+}
+
+export const Schedules: React.FC<SchedulesProps> = ({ data, fetchSchedule }) => {
+  const [scheduleData, setScheduleData] = useState<ScheduleData[]>([]);
 
   useEffect(() => {
     const fetchScheduleData = async () => {
@@ -42,7 +68,8 @@ export const Schedules = ({ data, fetchSchedule }) => {
           {scheduleData.map((schedule, index) => (
             <div key={index} className="card">
               {schedule.schedule.map((program, programIndex) => {
-                const timestamp = parseInt(program.endtimeutc.match(/\d+/)[0]);
+                const timestampMatch = program.endtimeutc.match(/\d+/);
+                const timestamp = timestampMatch ? parseInt(timestampMatch[0]) : 0;
                 const date = new Date(timestamp);
                 const formattedDate = date.toLocaleString();
 

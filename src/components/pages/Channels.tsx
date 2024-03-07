@@ -1,10 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactElement } from "react";
 import { Navbar } from "../Navbar/Navbar";
 import "./Channels.css";
 
-export const Channels = (props) => {
-  const [channels, setChannels] = useState([]);
+interface Channel {
+  name: string;
+  liveaudio: {
+    url: string;
+  };
+  image: string;
+  // Add any other properties as needed
+}
 
+interface ChannelsProps {
+  data: {
+    channels?: Channel[];
+  };
+  handleLoadLess: () => void;
+  handleLoadMore: () => void;
+}
+
+export const Channels: React.FC<ChannelsProps> = (props) => {
+  const [channels, setChannels] = useState<Channel[]>([]);
 
   const handleChannels = () => {
     if (props.data.channels) {
