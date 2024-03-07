@@ -31,7 +31,7 @@ export const App: React.FC = () => {
     const fetchChannels = async () => {
       try {
         const response = await fetch(
-          `http://api.sr.se/v2/channels?format=json&size=10&page=${currentPage}`
+          `https://api.sr.se/v2/channels?format=json&size=10&page=${currentPage}`
         );
         const jsonData: Channel[] = await response.json();
         setData(jsonData);
@@ -48,7 +48,7 @@ export const App: React.FC = () => {
   const fetchSchedule = async (channelId: number) => {
     try {
       const response = await fetch(
-        `http://api.sr.se/v2/scheduledepisodes?format=json&channelid=${channelId}`
+        `https://api.sr.se/v2/scheduledepisodes?format=json&channelid=${channelId}`
       );
       const data: any[] = await response.json();
       return data;
@@ -62,7 +62,7 @@ export const App: React.FC = () => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          "http://api.sr.se/api/v2/programcategories?format=json"
+          "https://api.sr.se/api/v2/programcategories?format=json"
         );
         const categorieData: any[] = await response.json();
         setCategorieData(categorieData);

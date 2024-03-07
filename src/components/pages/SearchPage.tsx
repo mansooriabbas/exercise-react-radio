@@ -26,7 +26,7 @@ export const SearchPage: React.FC = () => {
     const fetchPrograms = async () => {
       try {
         const response = await fetch(
-          "http://api.sr.se/api/v2/programs?size=1500&format=json"
+          "https://api.sr.se/api/v2/programs?size=1500&format=json"
         );
         const fetchedProgramData = await response.json();
         setProgramData(fetchedProgramData);
